@@ -5,18 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon faker-test.js"
+    "dev": "concurrently \"watchify ./js/faker.js -o ./js/bundle.js\" \"python -m http.server\"",
+    "bundle": "browserify ./js/faker > ./js/bundle.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "ejs": "^3.1.8",
-    "express": "^4.18.1",
-    "mongoose": "^6.3.4",
-    "nodemon": "^2.0.16"
-  },
   "devDependencies": {
-    "@faker-js/faker": "^6.3.1"
+    "@faker-js/faker": "^6.3.1",
+    "browserify": "^17.0.0",
+    "concurrently": "^7.2.1",
+    "nodemon": "^2.0.16",
+    "watchify": "^4.0.0"
   }
 }
