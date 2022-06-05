@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
+    <title>Minified Faker Test</title>
+</head>
+<body>
+    <h1>Cool Random Content</h1>
+    <div class="output"></div>
+    <script>
+let firstName = faker.name.firstName();
+let lastName = faker.name.lastName();
+let jobTitle = faker.name.jobTitle();
+let prefix = faker.name.prefix(); 
+let suffix = faker.name.suffix();
+let fullName = `${prefix} ${firstName} ${lastName} ${suffix}`
+let jobArea = faker.name.jobArea();
+let phone = faker.phone.phoneNumber();
+
+console.log(`Employee: ${prefix} ${firstName} ${lastName} ${suffix}`);
+console.log(`Job title: ${jobTitle}`);
+console.log(`Job area: ${jobArea}`);
+console.log(`Phone: ${phone}`);
+
+let output = document.querySelector('.output')
+
+output.innerHTML = `
+First Name: ${firstName}<br>
+Last Name: ${lastName}<br>
+Full Name: ${fullName}<br>
+Job: ${jobTitle}<br>
+Loc: ${jobArea}<br>
+Tel: ${phone}`
+        
+    </script>
+</body>
+</html>
