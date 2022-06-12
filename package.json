@@ -2,10 +2,11 @@
   "name": "faker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bundle.js",
   "scripts": {
+    "start":"index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"watchify ./js/faker.js -o ./js/bundle.js\" \"python -m http.server\"",
+    "dev": "concurrently \"watchify ./js/faker.js -o ./js/bundle.js\" \"live-server\"",
     "bundle": "browserify ./js/faker > ./js/bundle.js"
   },
   "keywords": [],
@@ -17,5 +18,8 @@
     "concurrently": "^7.2.1",
     "nodemon": "^2.0.16",
     "watchify": "^4.0.0"
+  },
+  "dependencies": {
+    "live-server": "^1.2.2"
   }
 }
