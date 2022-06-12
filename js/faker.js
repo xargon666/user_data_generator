@@ -13,8 +13,6 @@ class Record {
     }
 }
 
-
-
 btn.addEventListener("click",()=>{
     let int = parseInt(num.value);
     for (let i = 0; i < int; i++) {
@@ -49,7 +47,8 @@ function generate(){
         let email = faker.internet.email(firstName,lastName)
         let userName = faker.internet.userName(firstName,lastName)
         let password = faker.internet.password(10,true)
-        // let age = faker.date.birthdate() not available in current faker ver
+        // not available in current faker ver
+        // let age = faker.date.birthdate()
         
         let record = new Record(firstName,lastName,email,userName,password)
         if (!output.textContent) {createTable()}
@@ -58,6 +57,4 @@ function generate(){
     } catch(err){
         throw new Error(err)
     }
-
-
 }
