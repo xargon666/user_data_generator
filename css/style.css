@@ -3,3 +3,25 @@
 h1 {
     font-family: 'Macondo', cursive;
 }
+
+table, tr{
+    margin-top: 1rem;
+    vertical-align: top;
+    text-align: left;
+    font-size: 16px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color:#04AA6D;
+    color:white;
+    padding:11px 8px;
+    
+}
+
+td {
+    padding: 8px;
+}
