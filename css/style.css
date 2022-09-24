@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Macondo&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Macondo&display=swap");
 
 h1 {
-    font-family: 'Macondo', cursive;
+    font-family: "Macondo", cursive;
 }
 
-table, tr{
+table,
+tr {
     margin-top: 1rem;
     vertical-align: top;
     text-align: left;
@@ -15,11 +16,14 @@ table, tr{
     border: 1px solid #ccc;
 }
 
+tr:nth-child(even) {
+    background: #efe;
+}
+
 th {
-    background-color:#04AA6D;
-    color:white;
-    padding:11px 8px;
-    
+    background-color: #04aa6d;
+    color: white;
+    padding: 11px 8px;
 }
 
 td {
