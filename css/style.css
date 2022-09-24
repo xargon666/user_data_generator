@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Scada", sans-serif;
+    
 }
 
 :root {
@@ -45,8 +45,6 @@ main {
     grid-area: main;
 }
 
-
-
 h1 {
     font-family: "Macondo", cursive;
     padding: 0;
@@ -54,6 +52,10 @@ h1 {
 
 .wrapper {
     display: flex;
+}
+
+aside {
+    font-family: "Scada", sans-serif;
 }
 
 #control-panel {
