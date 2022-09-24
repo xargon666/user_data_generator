@@ -67,7 +67,6 @@ class Record {
         jobTitle,
         prefix,
         suffix,
-        fullName,
         jobArea,
         phone,
         email,
@@ -144,7 +143,6 @@ function generate(index) {
         let jobTitle = faker.name.jobTitle();
         let prefix = faker.name.prefix();
         let suffix = faker.name.suffix();
-        let fullName = `${prefix} ${firstName} ${lastName} ${suffix}`;
         let jobArea = faker.name.jobArea();
         let phone = faker.phone.phoneNumber();
         let email = faker.internet.email(firstName, lastName);
@@ -160,7 +158,6 @@ function generate(index) {
             jobTitle,
             prefix,
             suffix,
-            fullName,
             jobArea,
             phone,
             email,
