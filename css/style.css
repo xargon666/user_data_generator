@@ -54,6 +54,10 @@ h1 {
     display: flex;
 }
 
+#control-panel > #generate > #num {
+    margin-bottom: 0.5rem;
+}
+
 #control-panel {
     font-family: "Biryani", sans-serif;
     background-color: var(--lightGreen);
@@ -102,7 +106,7 @@ tr {
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #ccc;
-    font-size:0.9rem;
+    font-size: 0.9rem;
 }
 
 tr:nth-child(even) {
