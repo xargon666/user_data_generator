@@ -138,6 +138,7 @@ class Record {
 
 function generate(index) {
     try {
+        // get data from fakerJS
         let firstName = faker.name.firstName();
         let lastName = faker.name.lastName();
         let jobTitle = faker.name.jobTitle();
@@ -148,9 +149,9 @@ function generate(index) {
         let email = faker.internet.email(firstName, lastName);
         let userName = faker.internet.userName(firstName, lastName);
         let password = faker.internet.password(10, true);
-        // not available in current faker ver
+        // not available in current faker ver?
         // let age = faker.date.birthdate()
-        if (!output.textContent) Record.newTable(); // if not content in output, create a new table
+        if (!output.textContent) Record.newTable(); // if no content in output, create a new table
         let record = new Record(
             index,
             firstName,

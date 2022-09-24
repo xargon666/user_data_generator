@@ -1,12 +1,75 @@
-@import url("https://fonts.googleapis.com/css2?family=Macondo&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Biryani&family=Macondo&family=Scada&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --niceGreen: #04aa6d;
+    --lightGreen: #efe;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background: var(--niceGreen);
+    color:white;
+    padding:1rem;
+}
 
 h1 {
     font-family: "Macondo", cursive;
 }
 
+.wrapper {
+    display: flex;
+}
+
+#control-panel {
+    font-family: 'Biryani', sans-serif;
+    background-color:var(--lightGreen);
+    border-right:var(--niceGreen) solid 3px;
+    border-bottom:var(--niceGreen) solid 3px;
+    height:100%;
+}
+
+#control-panel > fieldset {
+    padding:0 0.5rem 0.5rem 0.5rem;
+    margin: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    font-size:0.9rem;
+}
+
+#settings-enabled {
+    display:flex;
+    justify-content:space-around;
+    margin-top:0.5rem;
+    font-size:0.8rem;
+}
+label {
+    padding-left:0.5rem;
+}
+
+#control-panel > fieldset > button {
+    padding: 0.25rem 0;
+    font-family: 'Scada', sans-serif;
+    background-color:var(--niceGreen);
+    color:white;
+    border:1px solid green;
+}
+
+#control-panel > fieldset > button:hover {
+    background:green;
+}
+
 table,
 tr {
-    margin-top: 1rem;
+    margin: 0.5rem;
     vertical-align: top;
     text-align: left;
     font-size: 16px;
@@ -17,11 +80,11 @@ tr {
 }
 
 tr:nth-child(even) {
-    background: #efe;
+    background: var(--lightGreen);
 }
 
 th {
-    background-color: #04aa6d;
+    background-color: var(--niceGreen);
     color: white;
     padding: 11px 8px;
 }
@@ -29,3 +92,4 @@ th {
 td {
     padding: 8px;
 }
+
