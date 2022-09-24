@@ -6,10 +6,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Scada", sans-serif;
 }
 
 :root {
     --niceGreen: #04aa6d;
+    --selectedGreen: #067c51;
     --lightGreen: #dfd;
 }
 
@@ -29,21 +31,21 @@ body {
 }
 
 header {
-    grid-area: header;
     display: flex;
+    flex-direction:column;
+    grid-area: header;
     justify-content: center;
+    align-items:center;
     background: var(--niceGreen);
     color: white;
     padding: 1rem;
 }
+
 main {
     grid-area: main;
 }
 
-.footer {
-    grid-area: footer;
-    font-family: "Macondo", cursive;
-}
+
 
 h1 {
     font-family: "Macondo", cursive;
@@ -54,12 +56,7 @@ h1 {
     display: flex;
 }
 
-#control-panel > #generate > #num {
-    margin-bottom: 0.5rem;
-}
-
 #control-panel {
-    font-family: "Biryani", sans-serif;
     background-color: var(--lightGreen);
     border-right: var(--niceGreen) solid 3px;
     border-bottom: var(--niceGreen) solid 3px;
@@ -84,18 +81,24 @@ label {
     padding-left: 0.5rem;
 }
 
+/* *** *** *** BUTTONS *** *** *** */
+#control-panel > fieldset > button:first-of-type {
+    margin-top:0.5rem;
+}
+
 #control-panel > fieldset > button {
-    padding: 0.25rem 0;
-    font-family: "Scada", sans-serif;
+    padding: 0.25rem 0 0 0;
+    font-family: "Biryani", sans-serif;
     background-color: var(--niceGreen);
     color: white;
-    border: 1px solid green;
+    border: none;
 }
 
 #control-panel > fieldset > button:hover {
-    background: green;
+    background: var(--selectedGreen);
 }
 
+/* *** *** *** TABLE *** *** *** */
 table,
 tr {
     margin: 0.5rem;
@@ -123,7 +126,12 @@ td {
     padding: 8px;
 }
 
-footer {
+/* FOOTER */
+.footer {
+    padding-top:0.5rem;
     display: flex;
     justify-content: center;
+    grid-area: footer;
+    font-family: "Macondo", cursive;
+    background-color:#efe;
 }
