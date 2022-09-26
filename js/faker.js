@@ -1,4 +1,8 @@
+// Faker Setup ************************************************************************************
 const { faker } = require("@faker-js/faker");
+faker.setLocale('en_GB')
+
+// Variables **************************************************************************************
 let output = document.querySelector(".output");
 let num = document.querySelector("#num");
 let settingsContainer = document.querySelector("#settings");
@@ -25,6 +29,7 @@ generateButton.addEventListener("click", () => {
     }
 });
 
+// Functions **************************************************************************************
 function checkAllOptions() {
     for (const option of options) {
         option.checked = true;
@@ -58,7 +63,43 @@ function clearResults() {
     }
 }
 
-updateDisplay();
+// Generate Records ===============================================================================
+function generate(index) {
+  try {
+      // get data from fakerJS
+      let firstName = faker.name.firstName();
+      let lastName = faker.name.lastName();
+      let jobTitle = faker.name.jobTitle();
+      let prefix = faker.name.prefix();
+      let suffix = faker.name.suffix();
+      let jobArea = faker.name.jobArea();
+      let phone = faker.phone.phoneNumber();
+      let email = faker.internet.email(firstName, lastName);
+      let userName = faker.internet.userName(firstName, lastName);
+      let password = faker.internet.password(10, true);
+      // not available in current faker ver?
+      // let age = faker.date.birthdate()
+      if (!output.textContent) Record.newTable(); // if no content in output, create a new table
+      let record = new Record(
+          index,
+          firstName,
+          lastName,
+          jobTitle,
+          prefix,
+          suffix,
+          jobArea,
+          phone,
+          email,
+          userName,
+          password
+      );
+      record.newRow();
+  } catch (err) {
+      throw new Error(err);
+  }
+}
+
+// Class ******************************************************************************************
 class Record {
     constructor(
         index,
@@ -136,37 +177,5 @@ class Record {
     }
 }
 
-function generate(index) {
-    try {
-        // get data from fakerJS
-        let firstName = faker.name.firstName();
-        let lastName = faker.name.lastName();
-        let jobTitle = faker.name.jobTitle();
-        let prefix = faker.name.prefix();
-        let suffix = faker.name.suffix();
-        let jobArea = faker.name.jobArea();
-        let phone = faker.phone.phoneNumber();
-        let email = faker.internet.email(firstName, lastName);
-        let userName = faker.internet.userName(firstName, lastName);
-        let password = faker.internet.password(10, true);
-        // not available in current faker ver?
-        // let age = faker.date.birthdate()
-        if (!output.textContent) Record.newTable(); // if no content in output, create a new table
-        let record = new Record(
-            index,
-            firstName,
-            lastName,
-            jobTitle,
-            prefix,
-            suffix,
-            jobArea,
-            phone,
-            email,
-            userName,
-            password
-        );
-        record.newRow();
-    } catch (err) {
-        throw new Error(err);
-    }
-}
+// Call updateDisplay once at runtime =============================================================
+updateDisplay();
