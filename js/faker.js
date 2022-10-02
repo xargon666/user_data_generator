@@ -21,7 +21,7 @@ let tableRows = [];
 exportButton.addEventListener("click",exportCSV)
 checkAll.addEventListener("click", checkAllOptions);
 uncheckAll.addEventListener("click", uncheckAllOptions);
-clearButton.addEventListener("click", clearResults);
+clearButton.addEventListener("click", clearResultsClick);
 for (const option of options) {
     option.addEventListener("click", updateDisplay);
 }
@@ -33,10 +33,29 @@ generateButton.addEventListener("click", () => {
     for (let i = 0; i < int; i++) {
         generate(i);
     }
+    // button text change
+    buttonTextChange(generateButton,"Data Generated")
 });
 
 // Functions **************************************************************************************
+
+function buttonTextChange(button,string) {
+    if (typeof(string) !== "string") return
+    if (typeof(button) !== "object") return
+    // button text change
+    const originalText = button.textContent
+    button.textContent = string
+    setTimeout(()=>{
+        button.textContent = originalText
+    },900)
+    
+}
+
 function exportCSV(){
+    if (tableHeaders.length === 0 || tableRows.length === 0) {
+        buttonTextChange(exportButton,"No Data!")
+        return
+    }
     // create csvContent
     let csvContent = "data:text/csv;charset=utf-8,"
     // add array as text string with carriage return
@@ -80,6 +99,15 @@ function updateDisplay() {
     checkedCount.textContent = count;
     console.table({activeSettings});
 }
+
+function clearResultsClick() {
+    // remove tables
+    clearResults();
+    // button text change
+    buttonTextChange(clearButton,"Data Removed")
+    // clear number input
+    num.value = ""
+};
 
 function clearResults() {
     // remove contents of output element
