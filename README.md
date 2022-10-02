@@ -8,9 +8,9 @@ This simple app generates fake user data in a table which can be exported to a .
 - Solve new challenges, such as exporting data to CSV with JavaScript
 
 ## 🚀 Deployment
-[https://userdata-generator.netlify.app](https://userdata-generator.netlify.app)
+[https://user-data-generator.netlify.app](https://user-data-generator.netlify.app)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0ce16fb3-4576-4d58-bb53-f837d5078ab5/deploy-status)](https://app.netlify.com/sites/userdata-generator/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0ce16fb3-4576-4d58-bb53-f837d5078ab5/deploy-status)](https://app.netlify.com/sites/user-data-generator/deploys)
 
 ## 🛠 Install for local development
 Clone this repo and jump into index.html right away to see some randomly generated dynamic text content.
