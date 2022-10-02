@@ -72,6 +72,7 @@ function exportCSV(){
     hiddenLink.download = 'User_Data.csv'
     console.log(hiddenLink)
     hiddenLink.click();
+    buttonTextChange(exportButton,"Data Exported")
 }
 
 function checkAllOptions() {
