@@ -1,3 +1,7 @@
+/* import fonts */
+/* Macondo */
+/* Biryani */
+/* Scada */
 @import url("https://fonts.googleapis.com/css2?family=Biryani&family=Macondo&family=Scada&display=swap");
 
 *,
@@ -6,7 +10,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
 
 :root {
@@ -24,7 +27,7 @@ body {
 body {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 4rem 1fr 2rem;
+    grid-template-rows: 8% 1fr 5%;
     grid-template-areas:
         "header"
         "main"
@@ -39,16 +42,23 @@ header {
     align-items:center;
     background: var(--niceGreen);
     color: white;
-    padding: 1rem;
+    padding: 2rem;
+}
+
+header > h1 {
+    padding-top:3px;
+    font-family: "Macondo", cursive;
+    font-size: 2.3rem;
+    line-height: 1
+}
+
+header > p {
+    font-family: "Biryani", serif;
+    font-size: .9rem;
 }
 
 main {
     grid-area: main;
-}
-
-h1 {
-    font-family: "Macondo", cursive;
-    padding: 0;
 }
 
 .wrapper {
@@ -57,6 +67,10 @@ h1 {
 
 aside {
     font-family: "Scada", sans-serif;
+}
+
+aside > fieldset > legend {
+    padding: 0 4px;
 }
 
 #num {
@@ -140,12 +154,18 @@ td {
 
 /* FOOTER */
 .footer {
-    padding-top:0.5rem;
+    bottom:0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     grid-area: footer;
-    font-family: "Macondo", cursive;
     background-color:#efe;
+}
+
+.footer > span, a {
+        font-style:italic;
+        font-family :Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: .85rem;
+        color:var(--niceGreen)
 }
