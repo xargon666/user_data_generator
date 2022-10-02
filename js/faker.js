@@ -3,7 +3,7 @@ const { faker } = require("@faker-js/faker");
 faker.setLocale('en_GB')
 
 // Variables **************************************************************************************
-let output = document.querySelector(".output");
+let output = document.querySelector(".output-desktop");
 let num = document.querySelector("#num");
 let settingsContainer = document.querySelector("#settings");
 let options = settingsContainer.querySelectorAll("input[type=checkbox]"); // nodelist of checkboxes
@@ -12,15 +12,21 @@ let clearButton = document.querySelector("#clear");
 let checkedCount = document.querySelector("#checkedCount");
 let checkAll = document.querySelector("#checkAllOptions");
 let uncheckAll = document.querySelector("#uncheckAllOptions");
+let exportButton = document.querySelector('#export')
 let activeSettings = [];
+let tableHeaders = [];
+let tableRows = [];
 
 // Button Event Listeners
+exportButton.addEventListener("click",exportCSV)
 checkAll.addEventListener("click", checkAllOptions);
 uncheckAll.addEventListener("click", uncheckAllOptions);
 clearButton.addEventListener("click", clearResults);
 for (const option of options) {
     option.addEventListener("click", updateDisplay);
 }
+
+// Make a new table and rows equal to number specified
 generateButton.addEventListener("click", () => {
     clearResults(); // clears onscreen results for each generate to avoid issues
     let int = parseInt(num.value);
@@ -30,6 +36,25 @@ generateButton.addEventListener("click", () => {
 });
 
 // Functions **************************************************************************************
+function exportCSV(){
+    // create csvContent
+    let csvContent = "data:text/csv;charset=utf-8,"
+    // add array as text string with carriage return
+    + tableHeaders.join(",") + "\n"
+    // add 2D array as text string with carraige return after each array
+    + tableRows.map((e) => e.join(",")).join("\n");
+    // converts text content into a URI format that can be passed as a href
+    // e.g. replaces spaces with %20
+    let encodedUri = encodeURI(csvContent);
+    // create hidden link for download hack
+    let hiddenLink = document.createElement('a')
+    hiddenLink.href = encodedUri
+    hiddenLink.target = '_blank'
+    hiddenLink.download = 'User_Data.csv'
+    console.log(hiddenLink)
+    hiddenLink.click();
+}
+
 function checkAllOptions() {
     for (const option of options) {
         option.checked = true;
@@ -53,14 +78,24 @@ function updateDisplay() {
         activeSettings.push(fieldName);
     }
     checkedCount.textContent = count;
-    console.log({ activeSettings });
+    console.table({activeSettings});
 }
 
 function clearResults() {
+    // remove contents of output element
+    first = output.firstElementChild;
+    while (first){
+        first.remove()
+        first = output.firstElementChild
+    }
+    // just to be sure there are no tables anywhere
     let tbl = document.querySelector("table");
     if (tbl) {
         tbl.remove();
     }
+    // clear variables for csv output
+    tableHeaders = [];
+    tableRows = []
 }
 
 // Generate Records ===============================================================================
@@ -77,9 +112,14 @@ function generate(index) {
       let email = faker.internet.email(firstName, lastName);
       let userName = faker.internet.userName(firstName, lastName);
       let password = faker.internet.password(10, true);
+      if (firstName === ""){
+        console.log("faker has failed somehow");
+      }
       // not available in current faker ver?
       // let age = faker.date.birthdate()
-      if (!output.textContent) Record.newTable(); // if no content in output, create a new table
+      hasTable = output.querySelector("table")
+      console.log("hasTable",hasTable)
+      if (!hasTable) Record.newTable(); // if no content in output, create a new table
       let record = new Record(
           index,
           firstName,
@@ -93,6 +133,7 @@ function generate(index) {
           userName,
           password
       );
+      console.log({record})
       record.newRow();
   } catch (err) {
       throw new Error(err);
@@ -129,12 +170,15 @@ class Record {
     }
 
     static newTable() {
+        tableHeaders = []
+        tableRows = []
         let tbl = document.createElement("table");
-        let tblr = document.createElement("tr");
-
+        let row = document.createElement("tr");
+        // create header
         for (let field in activeSettings) {
+            console.log("creating header")
             const fieldName = activeSettings[field];
-            let tblh = document.createElement("th");
+            let header = document.createElement("th");
             let text;
             if (fieldName.includes("Name")) {
                 text = fieldName.split("Name");
@@ -154,28 +198,39 @@ class Record {
                     fieldName.slice(1).toLowerCase();
             }
             Array.isArray(text) && (text = text.join(" "));
-            tblh.textContent = text; // add text
-            // console.log(tblh);
-            tblr.appendChild(tblh);
+            header.textContent = text; // add text
+            // Add header field to array for export
+            tableHeaders.push(text)
+            // Add header field to table
+            row.appendChild(header);
         }
-        tbl.appendChild(tblr);
+        tbl.appendChild(row);
         output.appendChild(tbl);
     }
 
     newRow() {
-        let tbl = document.querySelector("table");
+        let tbl = output.querySelector("table");
         let row = document.createElement("tr");
+        let arrayRow = []
         for (const prop in this) {
-            if (!activeSettings.includes(prop)) {
-                continue;
-            }
+            let value = this[prop]
+            // exit loop for non-selected prop
+            console.log("activeSettings has values?",activeSettings)
+            if (!activeSettings.includes(prop)) continue;
             let cell = document.createElement("td");
-            cell.textContent = this[prop];
+            arrayRow.push(value)
+            // add row to table
+            cell.textContent = value;
             row.appendChild(cell);
         }
+        // add row data to array for export
+        tableRows.push(arrayRow)
         tbl.appendChild(row);
+        console.log({row})
+        console.log({tbl})
     }
 }
 
 // Call updateDisplay once at runtime =============================================================
 updateDisplay();
+console.log("activeSettings initial state: ",activeSettings)
