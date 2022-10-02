@@ -13,6 +13,7 @@
     --niceGreen: #04aa6d;
     --selectedGreen: #067c51;
     --lightGreen: #dfd;
+    --activeGreen: #05dd8e;
 }
 
 html,
@@ -97,7 +98,12 @@ label {
 }
 
 #control-panel > fieldset > button:hover {
-    background: var(--selectedGreen);
+    background-color: var(--selectedGreen);
+    transition:0.25s;
+}
+#control-panel > fieldset > button:active {
+    background-color: var(--activeGreen);
+    transition:0s;
 }
 
 /* *** *** *** TABLE *** *** *** */
