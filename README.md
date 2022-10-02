@@ -1,6 +1,17 @@
 # User Data Generator
 This simple app generates fake user data in a table which can be exported to a .csv file. 
 
+## 💻 Tech 
+- HTML
+- CSS
+- JavaScript
+- npm
+  - [faker.js](https://fakerjs.dev/)
+
+## 💎 Features
+- Customizable output
+- Export to .csv file
+
 ## 🎯 Project Objectives
 - Create a simple but practical tool
 - Experiment using the faker.js package.
