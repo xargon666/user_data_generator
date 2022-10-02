@@ -6,7 +6,8 @@
   "scripts": {
     "start": "index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"watchify ./js/faker.js -o ./js/bundle.js\" \"live-server\"",
+    "dev": "concurrently \"watchify ./js/faker.js -o ./js/bundle.js\" \"python -m http.server 5000\"",
+    "dev2": "concurrently \"watchify ./js/faker.js -o ./js/bundle.js\" \"live-server\"",
     "bundle": "browserify ./js/faker > ./js/bundle.js"
   },
   "keywords": [],
@@ -20,6 +21,6 @@
   },
   "dependencies": {
     "@faker-js/faker": "^7.2.0",
-    "live-server": "^1.1.0"
+    "live-server": "^1.2.2"
   }
 }
