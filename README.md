@@ -9,6 +9,7 @@ This simple app generates fake user data in a table which can be exported to a .
 
 ## 🚀 Deployment
 [https://userdata-generator.netlify.app](https://userdata-generator.netlify.app)
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/0ce16fb3-4576-4d58-bb53-f837d5078ab5/deploy-status)](https://app.netlify.com/sites/userdata-generator/deploys)
 
 ## 🛠 Install for local development
