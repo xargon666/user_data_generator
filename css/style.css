@@ -59,6 +59,10 @@ aside {
     font-family: "Scada", sans-serif;
 }
 
+#num {
+    margin-top:2px;
+}
+
 #control-panel {
     background-color: var(--lightGreen);
     border-right: var(--niceGreen) solid 3px;
@@ -139,6 +143,8 @@ td {
     padding-top:0.5rem;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     grid-area: footer;
     font-family: "Macondo", cursive;
     background-color:#efe;
