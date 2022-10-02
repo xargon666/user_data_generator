@@ -6,7 +6,7 @@ This simple app generates fake user data in a table which can be exported to a .
 - CSS
 - JavaScript
 - npm
-  - [faker.js](https://fakerjs.dev/)
+  - ["@faker-js/faker": "^7.2.0"](https://fakerjs.dev/)
 
 ## 💎 Features
 - Customizable output
