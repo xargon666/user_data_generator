@@ -13,10 +13,10 @@ This simple app generates fake user data in a table which can be exported to a .
 - Export to .csv file
 
 ## 🎯 Project Objectives
-- Create a simple but practical tool
+- Create a simple but practical tool.
 - Experiment using the faker.js package.
-- Familiarize myself with Browserify, creating a local dev environment to work with npm packages
-- Solve new challenges, such as exporting data to CSV with JavaScript
+- Reaquaint myself with packages like **Browserify** to create a live dev environment compatible with npm packages.
+- Solve new challenges, such as exporting data to CSV with JavaScript.
 
 ## 🚀 Deployment
 [https://user-data-generator.netlify.app](https://user-data-generator.netlify.app)
@@ -53,13 +53,15 @@ I also created minTest.html which links to a minified version of the package, ac
 - nodemon
 
 ## Testing
-
-If you want to make changes in faker-test.js, you will need to re-bundle the output into script.js using browserify.
-
-run the following commands:
+run the following command:
 ```
-npm i
+npm run test
+```
+
+*Note: If you want to make changes in faker.js, you will need to re-bundle them for testing to work.*
+
+## Bundle
+run the following command:
+```
 npm run bundle
 ```
-
-Alternatively just make your changes in script.js!
