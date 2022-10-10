@@ -4,7 +4,7 @@ faker.setLocale('en_GB')
 
 // Variables **************************************************************************************
 let output = document.querySelector(".output-desktop");
-let num = document.querySelector("#num");
+let numInput = document.querySelector("#num");
 let settingsContainer = document.querySelector("#settings");
 let options = settingsContainer.querySelectorAll("input[type=checkbox]"); // nodelist of checkboxes
 let generateButton = document.querySelector("#gen");
@@ -18,7 +18,7 @@ let tableHeaders = [];
 let tableRows = [];
 
 // Button Event Listeners
-exportButton.addEventListener("click",exportCSV)
+exportButton.addEventListener("click", exportCSV)
 checkAll.addEventListener("click", checkAllOptions);
 uncheckAll.addEventListener("click", uncheckAllOptions);
 clearButton.addEventListener("click", clearResultsClick);
@@ -29,43 +29,52 @@ for (const option of options) {
 // Make a new table and rows equal to number specified
 generateButton.addEventListener("click", () => {
     clearResults(); // clears onscreen results for each generate to avoid issues
-    if (num.value < 1) {
-        buttonTextChange(generateButton,"Enter a number")
+    if (numInput.value < 1) {
+        console.log("missing input value")
+        buttonTextChange(generateButton, "Enter a number")
+        inputFlashing(numInput)
         return
     }
-    let int = parseInt(num.value);
+    let int = parseInt(numInput.value);
     for (let i = 0; i < int; i++) {
         generate(i);
     }
     // button text change
-    buttonTextChange(generateButton,"Data Generated")
+    buttonTextChange(generateButton, "Data Generated")
 });
 
 // Functions **************************************************************************************
+function inputFlashing(elem) {
+        elem.classList.add("flash")
+        setTimeout(()=>{
+            elem.classList.remove("flash")
+            console.log("flash off")
+        },1000)
+    } 
 
-function buttonTextChange(button,string) {
-    if (typeof(string) !== "string") return
-    if (typeof(button) !== "object") return
+function buttonTextChange(button, string) {
+    if (typeof (string) !== "string") return
+    if (typeof (button) !== "object") return
     // button text change
     const originalText = button.textContent
     button.textContent = string
-    setTimeout(()=>{
+    setTimeout(() => {
         button.textContent = originalText
-    },900)
-    
+    }, 900)
+
 }
 
-function exportCSV(){
+function exportCSV() {
     if (tableHeaders.length === 0 || tableRows.length === 0) {
-        buttonTextChange(exportButton,"No Data!")
+        buttonTextChange(exportButton, "No Data!")
         return
     }
     // create csvContent
     let csvContent = "data:text/csv;charset=utf-8,"
-    // add array as text string with carriage return
-    + tableHeaders.join(",") + "\n"
-    // add 2D array as text string with carraige return after each array
-    + tableRows.map((e) => e.join(",")).join("\n");
+        // add array as text string with carriage return
+        + tableHeaders.join(",") + "\n"
+        // add 2D array as text string with carraige return after each array
+        + tableRows.map((e) => e.join(",")).join("\n");
     // converts text content into a URI format that can be passed as a href
     // e.g. replaces spaces with %20
     let encodedUri = encodeURI(csvContent);
@@ -76,7 +85,7 @@ function exportCSV(){
     hiddenLink.download = 'User_Data.csv'
     console.log(hiddenLink)
     hiddenLink.click();
-    buttonTextChange(exportButton,"Data Exported")
+    buttonTextChange(exportButton, "Data Exported")
 }
 
 function checkAllOptions() {
@@ -102,22 +111,22 @@ function updateDisplay() {
         activeSettings.push(fieldName);
     }
     checkedCount.textContent = count;
-    console.table({activeSettings});
+    console.table({ activeSettings });
 }
 
 function clearResultsClick() {
     // remove tables
     clearResults();
     // button text change
-    buttonTextChange(clearButton,"Data Removed")
+    buttonTextChange(clearButton, "Data Removed")
     // clear number input
-    num.value = ""
+    numInput.value = ""
 };
 
 function clearResults() {
     // remove contents of output element
     first = output.firstElementChild;
-    while (first){
+    while (first) {
         first.remove()
         first = output.firstElementChild
     }
@@ -133,44 +142,44 @@ function clearResults() {
 
 // Generate Records ===============================================================================
 function generate(index) {
-  try {
-      // get data from fakerJS
-      let firstName = faker.name.firstName();
-      let lastName = faker.name.lastName();
-      let jobTitle = faker.name.jobTitle();
-      let prefix = faker.name.prefix();
-      let suffix = faker.name.suffix();
-      let jobArea = faker.name.jobArea();
-      let phone = faker.phone.phoneNumber();
-      let email = faker.internet.email(firstName, lastName);
-      let userName = faker.internet.userName(firstName, lastName);
-      let password = faker.internet.password(10, true);
-      if (firstName === ""){
-        console.log("faker has failed somehow");
-      }
-      // not available in current faker ver?
-      // let age = faker.date.birthdate()
-      hasTable = output.querySelector("table")
-      console.log("hasTable",hasTable)
-      if (!hasTable) Record.newTable(); // if no content in output, create a new table
-      let record = new Record(
-          index,
-          firstName,
-          lastName,
-          jobTitle,
-          prefix,
-          suffix,
-          jobArea,
-          phone,
-          email,
-          userName,
-          password
-      );
-      console.log({record})
-      record.newRow();
-  } catch (err) {
-      throw new Error(err);
-  }
+    try {
+        // get data from fakerJS
+        let firstName = faker.name.firstName();
+        let lastName = faker.name.lastName();
+        let jobTitle = faker.name.jobTitle();
+        let prefix = faker.name.prefix();
+        let suffix = faker.name.suffix();
+        let jobArea = faker.name.jobArea();
+        let phone = faker.phone.phoneNumber();
+        let email = faker.internet.email(firstName, lastName);
+        let userName = faker.internet.userName(firstName, lastName);
+        let password = faker.internet.password(10, true);
+        if (firstName === "") {
+            console.log("faker has failed somehow");
+        }
+        // not available in current faker ver?
+        // let age = faker.date.birthdate()
+        hasTable = output.querySelector("table")
+        console.log("hasTable", hasTable)
+        if (!hasTable) Record.newTable(); // if no content in output, create a new table
+        let record = new Record(
+            index,
+            firstName,
+            lastName,
+            jobTitle,
+            prefix,
+            suffix,
+            jobArea,
+            phone,
+            email,
+            userName,
+            password
+        );
+        console.log({ record })
+        record.newRow();
+    } catch (err) {
+        throw new Error(err);
+    }
 }
 
 // Class ******************************************************************************************
@@ -248,7 +257,7 @@ class Record {
         for (const prop in this) {
             let value = this[prop]
             // exit loop for non-selected prop
-            console.log("activeSettings has values?",activeSettings)
+            console.log("activeSettings has values?", activeSettings)
             if (!activeSettings.includes(prop)) continue;
             let cell = document.createElement("td");
             arrayRow.push(value)
@@ -259,11 +268,11 @@ class Record {
         // add row data to array for export
         tableRows.push(arrayRow)
         tbl.appendChild(row);
-        console.log({row})
-        console.log({tbl})
+        console.log({ row })
+        console.log({ tbl })
     }
 }
 
 // Call updateDisplay once at runtime =============================================================
 updateDisplay();
-console.log("activeSettings initial state: ",activeSettings)
+console.log("activeSettings initial state: ", activeSettings)

@@ -124,6 +124,15 @@ label {
     transition:0s;
 }
 
+.flash {
+    outline:solid 2px greenyellow;
+    animation: flasher 0.25s linear infinite;
+}
+  
+  @keyframes flasher {  
+    100% { outline: 0; }
+  }
+
 /* *** *** *** TABLE *** *** *** */
 table,
 tr {
