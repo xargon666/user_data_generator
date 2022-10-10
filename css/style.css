@@ -73,7 +73,7 @@ aside > fieldset > legend {
     padding: 0 4px;
 }
 
-#num {
+#stupid {
     margin-top:2px;
 }
 
@@ -124,14 +124,24 @@ label {
     transition:0s;
 }
 
-.flash {
-    outline:solid 2px greenyellow;
-    animation: flasher 0.25s linear infinite;
+.wiggle {
+    animation: wiggler 0.2s ease infinite;
 }
-  
-  @keyframes flasher {  
-    100% { outline: 0; }
-  }
+  @keyframes wiggler {  
+    0% { transform: translate(0rem) }
+    25% { transform: translate(0.1rem) }
+    75% { transform: translate(-0.1rem) }
+    100% { transform: translate(0rem) }
+}
+
+.flash {
+    content:"";
+    box-shadow: 0 0 2px 0.25rem greenyellow;
+    animation: flasher .4s linear infinite;
+}
+@keyframes flasher {
+    50% { box-shadow: none }
+}
 
 /* *** *** *** TABLE *** *** *** */
 table,

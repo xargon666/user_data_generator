@@ -45,12 +45,12 @@ generateButton.addEventListener("click", () => {
 
 // Functions **************************************************************************************
 function inputFlashing(elem) {
-        elem.classList.add("flash")
-        setTimeout(()=>{
-            elem.classList.remove("flash")
-            console.log("flash off")
-        },1000)
-    } 
+    elem.classList.add("wiggle")
+    let parent = elem.parentElement
+    parent.classList.add("flash")
+    setTimeout(() => elem.classList.remove("wiggle"), 700)
+    setTimeout(() => parent.classList.remove("flash"), 700)
+}
 
 function buttonTextChange(button, string) {
     if (typeof (string) !== "string") return
