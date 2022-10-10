@@ -29,6 +29,10 @@ for (const option of options) {
 // Make a new table and rows equal to number specified
 generateButton.addEventListener("click", () => {
     clearResults(); // clears onscreen results for each generate to avoid issues
+    if (num.value < 1) {
+        buttonTextChange(generateButton,"Enter a number")
+        return
+    }
     let int = parseInt(num.value);
     for (let i = 0; i < int; i++) {
         generate(i);
